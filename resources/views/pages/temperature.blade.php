@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title_menu', 'Data temperatur')
+@section('title_menu', 'Data temperature')
 
 
 @section('content')

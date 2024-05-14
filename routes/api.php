@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\DeviceController;
 use App\Http\Controllers\Api\LampController;
+use App\Http\Controllers\Api\LedController;
 use App\Http\Controllers\Api\SensorController;
 use App\Http\Controllers\Api\SensorLogController;
 use App\Http\Controllers\Api\TemperatureController;
@@ -82,11 +83,15 @@ Route::prefix('v1/devices')->name('devices.')->group(function () {
 
 // Route temperature
 Route::prefix('v1/temperatures')->name('temperatures.')->group(function () {
-    // http method/ action: GET, POST, PUT, PATCH, DELETE
-    // GET api/v1/temperatures
-    Route::get('/', [TemperatureController::class, 'index'])
-        ->name('get');
-    // POST api/v1/temperatures
-    Route::post('/', [TemperatureController::class, 'store'])
-        ->name('store');
+    Route::get('/', [TemperatureController::class, 'index'])->name('get');
+    Route::post('/', [TemperatureController::class, 'store'])->name('store');
+});
+
+//Route leds
+Route::prefix('v1/leds')->name('leds.')->group(function () {
+    Route::get('/', [LedController::class, 'index'])->name('index');
+    Route::get('/{id}', [LedController::class, 'show'])->name('show');
+    Route::post('/', [LedController::class, 'store'])->name('store');
+    Route::put('/{id}', [LedController::class, 'update'])->name('update');
+    Route::delete('/{id}', [LedController::class, 'destroy'])->name('destroy');
 });
